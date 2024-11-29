@@ -1,0 +1,40 @@
+# version format ex. "0.0.1"
+version: "0.0.2"
+
+# Basic metadata for the agent
+metadata:
+  name: "mira-qna"
+  description: "This flow helps you answer everything related to Mira's whitepaper."
+  author: "venmus" # This username should match your account username
+  tags: [mira network, ai, flows] # Tags are keywords used to categorize your flow
+  private: false # Access control for your flows (true/false)
+
+# Define the input variables required
+inputs:
+  question:
+    type: string #Currently we only support String format
+    description: "Enter the question you need to ask"
+    required: true
+    example: "What does Mira Network vision looks like?"
+
+# LLM configuration
+model:
+  provider: "meta" # e.g., anthropic, openai, meta, etc.
+  name: "llama-3.1-8b-instruct:free"
+
+# For supported LLM models, refer to the documentation: https://docs.mira.network/sdk/core-concepts
+
+# Dataset configuration (Optional)
+dataset:
+  source: "venmus/mira-whitepaper" # Make sure this data set exists
+
+# Prompt template configuration
+prompt: |
+  Can you answer the following question by gathering more info about Mira Network from the dataset provided to you.
+  Question: {question}
+
+# ReadME configuration
+readme: |
+  This flow helps you answer questions related to Mira Network. The model used in this flow is llama-3.1-8b-instruct:free.
+
+  Example: Question: What does Mira Network vision looks like?
